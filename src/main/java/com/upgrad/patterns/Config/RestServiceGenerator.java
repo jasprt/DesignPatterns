@@ -10,32 +10,32 @@ public class RestServiceGenerator {
 
     private static Logger logger = LoggerFactory.getLogger(RestServiceGenerator.class);
 
-    private static RestTemplate restTemplate;
+    private static volatile RestTemplate restTemplate;
 
-    private RestServiceGenerator()
-    {
+    private RestServiceGenerator() {
     }
 
-    public static RestTemplate GetInstance()
-    {
+    public static RestTemplate GetInstance() {
         // return restTemplate object if initialized already
-    	synchronized (RestServiceGenerator.class) {
-            if (restTemplate != null) {
-                return restTemplate;
+        if (restTemplate != null) {
+            synchronized (RestServiceGenerator.class) {
+                if (restTemplate != null) {
+                    return restTemplate;
+                }
             }
-
-            // Initialize restTemplate. This is executed only once.
-            restTemplate = new RestTemplateBuilder()
-                    .interceptors((request, body, execution) -> {
-                        logger.info(String.format("Calling %s %s", request.getMethod(), request.getURI()));
-                        ClientHttpResponse clientHttpResponse = execution.execute(request, body);
-                        logger.info(String.format("Call completed %s %s responded with %s", request.getMethod(), request.getURI(), clientHttpResponse.getStatusCode()));
-                        return clientHttpResponse;
-                    })
-                    .build();
-
-            //return restTemplate object
-            return restTemplate;
         }
+
+        // Initialize restTemplate. This is executed only once.
+        restTemplate = new RestTemplateBuilder()
+                .interceptors((request, body, execution) -> {
+                    logger.info(String.format("Calling %s %s", request.getMethod(), request.getURI()));
+                    ClientHttpResponse clientHttpResponse = execution.execute(request, body);
+                    logger.info(String.format("Call completed %s %s responded with %s", request.getMethod(), request.getURI(), clientHttpResponse.getStatusCode()));
+                    return clientHttpResponse;
+                })
+                .build();
+
+        //return restTemplate object
+        return restTemplate;
     }
 }
