@@ -25,30 +25,28 @@ public class DiseaseShStrategy implements IndianDiseaseStat {
     @Value("${config.diseaseSh-io-url}")
     private String baseUrl;
 
-    public DiseaseShStrategy()
-    {
+    public DiseaseShStrategy() {
         restTemplate = RestServiceGenerator.GetInstance();
     }
 
     @Override
     public String GetActiveCount() {
-    	//write a try catch block here
-    	
-    	//try block
-    	
-	    	//obtain response from the getDiseaseShResponseResponses() method
-	    	//store it in an object
-	    	
-    		//get the response using the getCases() method
-	    	//return the response after rounding it up to 0 decimal places
-    	
-    	
-    	//catch block
-    		//log the error
-    	
-    		//return null
-    	
-    	
+        //try block
+        try {
+            //obtain response from the getDiseaseShResponseResponses() method
+            //store it in an object
+            DiseaseShResponse diseaseShResponse = getDiseaseShResponseResponses();
+
+            //get the response using the getCases() method
+            //return the response after rounding it up to 0 decimal places
+            return String.valueOf(Math.round(diseaseShResponse.getCases()));
+        }
+        //catch block
+        catch (Exception e) {
+            //log the error
+            logger.error("Failed with Exception: ", e);
+            return null;
+        }
     }
 
     private DiseaseShResponse getDiseaseShResponseResponses() {
@@ -61,7 +59,7 @@ public class DiseaseShStrategy implements IndianDiseaseStat {
         DiseaseShResponse temp = restTemplate.exchange(
                 baseUrl, HttpMethod.GET, new HttpEntity<Object>(headers),
                 DiseaseShResponse.class).getBody();
-        
+
         System.out.println(temp);
         return temp;
     }
