@@ -36,7 +36,7 @@ public class DiseaseCountFacade {
             Float population = 900000000F;
             SourceType sourceEnum = SourceType.valueOf(sourceType);
             Float active = Float.valueOf(indiaDiseaseStat.GetInstance(sourceEnum).GetActiveCount());
-            Float percent = Float.valueOf((active / population));
+            float percent = (active / population);
             return String.format("%.3f", percent * 100);
         } catch (Exception e) {
             String message = String.format("Invalid source type specified. Available source type (%s, %s)", SourceType.DiseaseSh, SourceType.JohnHopkins);
