@@ -18,9 +18,9 @@ import java.util.Arrays;
 @Service
 public class JohnHopkinsStrategy implements IndianDiseaseStat {
 
-    private Logger logger = LoggerFactory.getLogger(JohnHopkinsStrategy.class);
+    private final Logger logger = LoggerFactory.getLogger(JohnHopkinsStrategy.class);
 
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
 
     @Value("${config.john-hopkins-url}")
     private String baseUrl;
@@ -44,10 +44,10 @@ public class JohnHopkinsStrategy implements IndianDiseaseStat {
                     .reduce(0f, Float::sum);
             return String.valueOf(Math.round(confirmedIndia));
         }
-		//catch block
-        catch(Exception e) {
+        //catch block
+        catch (Exception e) {
             //log the error
-			logger.error("Exception with error: ", e);
+            logger.error("Exception with error: ", e);
             return null;
         }
 

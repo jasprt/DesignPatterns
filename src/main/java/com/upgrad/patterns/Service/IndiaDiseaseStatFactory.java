@@ -1,7 +1,7 @@
 package com.upgrad.patterns.Service;
 
-import com.upgrad.patterns.Interfaces.IndianDiseaseStat;
 import com.upgrad.patterns.Constants.SourceType;
+import com.upgrad.patterns.Interfaces.IndianDiseaseStat;
 import com.upgrad.patterns.Strategies.DiseaseShStrategy;
 import com.upgrad.patterns.Strategies.JohnHopkinsStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class IndiaDiseaseStatFactory {
         this.diseaseShStrategy = diseaseShStrategy;
         this.johnHopkinsStrategy = johnHopkinsStrategy;
     }
-    
+
     //create a method named GetInstance with return type as IndianDiseaseStat and parameter of type sourceType
     public IndianDiseaseStat GetInstance(SourceType sourceType) {
         //create a conditional statement

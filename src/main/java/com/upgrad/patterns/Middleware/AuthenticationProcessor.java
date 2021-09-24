@@ -6,8 +6,7 @@ public abstract class AuthenticationProcessor {
 
     protected AuthenticationProcessor nextProcessor;
 
-    public AuthenticationProcessor(AuthenticationProcessor nextProcessor)
-    {
+    public AuthenticationProcessor(AuthenticationProcessor nextProcessor) {
         this.nextProcessor = nextProcessor;
     }
 

@@ -2,10 +2,9 @@ package com.upgrad.patterns.Authentication;
 
 public class JwtAuthProvider extends AuthenticationProvider {
 
-    private String token;
+    private final String token;
 
-    public JwtAuthProvider(String token)
-    {
+    public JwtAuthProvider(String token) {
         this.token = token;
     }
 

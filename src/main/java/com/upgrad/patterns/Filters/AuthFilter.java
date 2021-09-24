@@ -15,11 +15,10 @@ import java.io.IOException;
 @Configuration
 public class AuthFilter implements Filter {
 
-    private Logger logger = LoggerFactory.getLogger(AuthFilter.class);
+    private final Logger logger = LoggerFactory.getLogger(AuthFilter.class);
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException
-    {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         logger.info(String.format("Incoming request for %s %s", httpRequest.getMethod(), httpRequest.getRequestURI()));
         StopWatch stopWatch = new StopWatch();
@@ -27,7 +26,7 @@ public class AuthFilter implements Filter {
 
         AuthenticationProcessor processor = Authenticator.GetAuthProcessor();
         boolean authorized = processor.isAuthorized(Authenticator.GetAuthProvider(httpRequest));
-        if(authorized)
+        if (authorized)
             chain.doFilter(request, response);
         else {
             logger.error("Authentication Failed");

@@ -18,9 +18,9 @@ import java.util.Arrays;
 @Service
 public class DiseaseShStrategy implements IndianDiseaseStat {
 
-    private Logger logger = LoggerFactory.getLogger(DiseaseShStrategy.class);
+    private final Logger logger = LoggerFactory.getLogger(DiseaseShStrategy.class);
 
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
 
     @Value("${config.diseaseSh-io-url}")
     private String baseUrl;

@@ -5,8 +5,7 @@ import com.upgrad.patterns.Authentication.JwtAuthProvider;
 
 public class JwtAuthProcessor extends AuthenticationProcessor {
 
-    public JwtAuthProcessor(AuthenticationProcessor processor)
-    {
+    public JwtAuthProcessor(AuthenticationProcessor processor) {
         super(processor);
     }
 
@@ -14,12 +13,9 @@ public class JwtAuthProcessor extends AuthenticationProcessor {
     @Override
     public boolean isAuthorized(AuthenticationProvider provider) {
 
-        if(provider instanceof JwtAuthProvider)
-        {
+        if (provider instanceof JwtAuthProvider) {
             return provider.Authenticate();
-        }
-        else if(nextProcessor != null)
-        {
+        } else if (nextProcessor != null) {
             return nextProcessor.isAuthorized(provider);
         }
         return false;

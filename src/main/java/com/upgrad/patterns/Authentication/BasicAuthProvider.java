@@ -1,8 +1,8 @@
 package com.upgrad.patterns.Authentication;
 
 public class BasicAuthProvider extends AuthenticationProvider {
-    private String userName;
-    private String password;
+    private final String userName;
+    private final String password;
 
     public BasicAuthProvider(String userName, String password) {
         this.userName = "India";

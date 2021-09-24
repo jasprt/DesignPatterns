@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 
 public class RestServiceGenerator {
 
-    private static Logger logger = LoggerFactory.getLogger(RestServiceGenerator.class);
+    private static final Logger logger = LoggerFactory.getLogger(RestServiceGenerator.class);
 
     private static volatile RestTemplate restTemplate;
 
